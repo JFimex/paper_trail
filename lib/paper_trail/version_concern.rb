@@ -313,7 +313,7 @@ module PaperTrail
     def reify_has_many_directly(associations, model, options = {})
       version_table_name = model.class.paper_trail_version_class.table_name
       associations.each do |assoc|
-        next unless assoc.klass.paper_trail_enabled_for_model?
+        next unless assoc.klass.try(:paper_trail_enabled_for_model?)
         version_id_subquery = PaperTrail::VersionAssociation.joins(model.class.version_association_name).
           select("MIN(version_id)").
           where("foreign_key_name = ?", assoc.foreign_key).
