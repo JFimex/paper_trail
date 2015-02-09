@@ -2,6 +2,8 @@
 
 PaperTrail lets you track changes to your models' data.  It's good for auditing or versioning.  You can see how a model looked at any stage in its lifecycle, revert it to any version, and even undelete it after it's been destroyed.
 
+Note: this is an ad-hoc change to the original that hacks around a bug where `bundle exec rails generate paper_trail:install --with-associations` didn't create the association or transaction id tables.
+
 There's an excellent [RailsCast on implementing Undo with Paper Trail](http://railscasts.com/episodes/255-undo-with-paper-trail).
 
 ## Features
@@ -58,7 +60,7 @@ The Rails 2.3 code is on the [`rails2`](https://github.com/airblade/paper_trail/
     
     `rails generate paper_trail:install --with-changes`
     
-    (depending on wanted features)
+    (they will all do the same thing with this version)
 
 3. Run the migration.
 
