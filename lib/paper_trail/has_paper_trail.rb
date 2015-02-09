@@ -382,7 +382,7 @@ module PaperTrail
             if (associated_record = send(assoc.name)).class.try(:paper_trail_enabled_for_model?)
               assoc_version_args.merge!(:foreign_key_id => associated_record.id)
             end
-          elsif assoc.klass.paper_trail_enabled_for_model?
+          elsif assoc.klass.try(:paper_trail_enabled_for_model?)
             assoc_version_args.merge!(:foreign_key_id => send(assoc.foreign_key))
           end
 
