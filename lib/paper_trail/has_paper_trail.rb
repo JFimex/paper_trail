@@ -47,7 +47,7 @@ module PaperTrail
         class_attribute :paper_trail_options
         self.paper_trail_options = options.dup
 
-        [:ignore, :skip, :only].each do |k|
+        [:ignore, :skip, :only, :mutual_versioning].each do |k|
           paper_trail_options[k] =
             [paper_trail_options[k]].flatten.compact.map { |attr| attr.is_a?(Hash) ? attr.stringify_keys : attr.to_s }
         end
@@ -296,6 +296,9 @@ module PaperTrail
           version = send(self.class.versions_association_name).create! merge_metadata(data)
           set_transaction_id(version)
           save_associations(version)
+	  paper_trail_options[:mutual_versioning].to_a.each. do |mv|
+		puts mv.to_a	
+	  end
         end
       end
 
