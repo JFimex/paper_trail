@@ -296,9 +296,12 @@ module PaperTrail
           version = send(self.class.versions_association_name).create! merge_metadata(data)
           set_transaction_id(version)
           save_associations(version)
-	  paper_trail_options[:mutual_versioning].to_a.each. do |mv|
-		puts mv.to_a	
-	  end
+	  paper_trail_options[:mutual_versioning].to_a.each do |mv|
+	    if((self[mv] || self["#{mv}_id"]) && PaperTrail::Version.where(transaction_id: version.transaction_id, item_type: mv.camelize) == [])	
+		ppt_id = self[mv] || self["#{mv}_id"]
+		PaperTrail::Version.create(transaction_id: version.transaction_id, created_at: version.created_at, whodunnit: version.whodunnit, item_id: ppt_id,  item_type: mv.camelize, event: "association_event" ) 
+	   end
+  	 end
         end
       end
 
@@ -323,6 +326,12 @@ module PaperTrail
           version = send(self.class.versions_association_name).create merge_metadata(data)
           set_transaction_id(version)
           save_associations(version)
+	  paper_trail_options[:mutual_versioning].to_a.each do |mv|
+	    if((self[mv] || self["#{mv}_id"]) && PaperTrail::Version.where(transaction_id: version.transaction_id, item_type: mv.camelize) == [])	
+		ppt_id = self[mv] || self["#{mv}_id"]
+		PaperTrail::Version.create(transaction_id: version.transaction_id, created_at: version.created_at, whodunnit: version.whodunnit, item_id: ppt_id,  item_type: mv.camelize, event: "association_event" ) 
+	   end
+  	 end
         end
       end
 
@@ -369,6 +378,12 @@ module PaperTrail
           send(self.class.versions_association_name).send :load_target
           set_transaction_id(version)
           save_associations(version)
+	  paper_trail_options[:mutual_versioning].to_a.each do |mv|
+	    if((self[mv] || self["#{mv}_id"]) && PaperTrail::Version.where(transaction_id: version.transaction_id, item_type: mv.camelize) == [])	
+		ppt_id = self[mv] || self["#{mv}_id"]
+		PaperTrail::Version.create(transaction_id: version.transaction_id, created_at: version.created_at, whodunnit: version.whodunnit, item_id: ppt_id,  item_type: mv.camelize, event: "association_event" ) 
+	   end
+  	 end
         end
       end
 
