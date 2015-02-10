@@ -217,6 +217,9 @@ module PaperTrail
     rescue
       {}
     end
+    def this_is_in_a_version
+	"Lets Test!"
+    end
 
     # Returns who put the item into the state stored in this version.
     def originator

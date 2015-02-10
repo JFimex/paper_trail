@@ -84,9 +84,6 @@ module PaperTrail
         after_rollback :reset_transaction_id
         after_rollback :clear_rolled_back_versions
       end
-      def self.my_gem_test
-      	"Yayy i can gem now?"
-      end
 
       # Switches PaperTrail off for this class.
       def paper_trail_off!
@@ -181,6 +178,9 @@ module PaperTrail
       # returns false if this instance came from a previous version.
       def live?
         source_version.nil?
+      end
+      def this_is_in_a_model
+	"Hopefully"
       end
 
       # Returns who put the object into its current state.
