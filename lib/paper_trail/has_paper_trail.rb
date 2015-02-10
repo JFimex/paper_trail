@@ -34,9 +34,6 @@ module PaperTrail
         # Lazily include the instance methods so we don't clutter up
         # any more ActiveRecord models than we have to.
         send :include, InstanceMethods
-	def self.test
-		"Yayy i can gem now?"
-	end
 
         class_attribute :version_association_name
         self.version_association_name = options[:version] || :version
@@ -86,6 +83,9 @@ module PaperTrail
         after_commit :reset_transaction_id
         after_rollback :reset_transaction_id
         after_rollback :clear_rolled_back_versions
+      end
+      def self.test
+      	"Yayy i can gem now?"
       end
 
       # Switches PaperTrail off for this class.
