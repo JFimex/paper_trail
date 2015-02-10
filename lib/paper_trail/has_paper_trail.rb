@@ -34,6 +34,9 @@ module PaperTrail
         # Lazily include the instance methods so we don't clutter up
         # any more ActiveRecord models than we have to.
         send :include, InstanceMethods
+	def self.test
+		"Yayy i can gem now?"
+	end
 
         class_attribute :version_association_name
         self.version_association_name = options[:version] || :version
@@ -475,6 +478,7 @@ module PaperTrail
         skip = self.paper_trail_options[:skip]
         changed - ignore - skip
       end
+
 
       def paper_trail_switched_on?
         PaperTrail.enabled? && PaperTrail.enabled_for_controller? && self.paper_trail_enabled_for_model?
