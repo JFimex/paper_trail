@@ -84,7 +84,7 @@ module PaperTrail
         after_rollback :reset_transaction_id
         after_rollback :clear_rolled_back_versions
       end
-      def self.test
+      def self.my_gem_test
       	"Yayy i can gem now?"
       end
 
