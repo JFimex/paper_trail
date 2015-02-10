@@ -179,9 +179,6 @@ module PaperTrail
       def live?
         source_version.nil?
       end
-      def this_is_in_a_model
-	"Hopefully"
-      end
 
       # Returns who put the object into its current state.
       def originator

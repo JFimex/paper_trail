@@ -217,9 +217,6 @@ module PaperTrail
     rescue
       {}
     end
-    def this_is_in_a_version
-	"Lets Test!"
-    end
 
     # Returns who put the item into the state stored in this version.
     def originator
@@ -255,6 +252,10 @@ module PaperTrail
           sibling_versions.select([table[PaperTrail.timestamp_field], table[self.class.primary_key]]).
             order(self.class.timestamp_sort_order).index(self)
         end
+    end
+
+    def neighbours # don't have a better name
+	PaperTrail::Version.where(transaction_id: self.transaction_id).where.not(id: self.id)	
     end
 
     private
