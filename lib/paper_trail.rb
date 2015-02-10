@@ -34,6 +34,10 @@ module PaperTrail
     paper_trail_store[:request_enabled_for_controller] = value
   end
 
+  def self.this_is_a_test_method
+	"Yayy i kinda know how to make gems!"
+  end
+
   # Returns `true` if PaperTrail is enabled for the request, `false` otherwise.
   #
   # See `PaperTrail::Rails::Controller#paper_trail_enabled_for_controller`.
