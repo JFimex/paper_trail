@@ -254,8 +254,12 @@ module PaperTrail
         end
     end
 
-    def neighbours # don't have a better name
-	PaperTrail::Version.where(transaction_id: self.transaction_id).where.not(id: self.id)	
+    def neighbours(clazz = nil)
+    	if clazz
+		PaperTrail::Version.where(transaction_id: self.transaction_id, item_type: clazz.to_s.camelize)
+	else
+		PaperTrail::Version.where(transaction_id: self.transaction_id).where.not(id: self.id)	
+	end
     end
 
     private
