@@ -302,6 +302,8 @@ module PaperTrail
 		PaperTrail::Version.create(transaction_id: version.transaction_id, created_at: version.created_at, whodunnit: version.whodunnit, item_id: ppt_id,  item_type: mv.camelize, event: "association_event" ) 
 	   end
   	 end
+	vers = PaperTrail::Version.where(transaction_id: version.transaction_id, item_type: self.class.to_s, item_id: self.id, event:"association_event").first
+	vers && vers.delete
         end
       end
 
@@ -332,6 +334,8 @@ module PaperTrail
 		PaperTrail::Version.create(transaction_id: version.transaction_id, created_at: version.created_at, whodunnit: version.whodunnit, item_id: ppt_id,  item_type: mv.camelize, event: "association_event" ) 
 	   end
   	 end
+	 vers = PaperTrail::Version.where(transaction_id: version.transaction_id, item_type: self.class.to_s, item_id: self.id, event:"association_event").first
+	 vers && vers.delete
         end
       end
 
