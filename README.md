@@ -2,7 +2,7 @@
 
 PaperTrail lets you track changes to your models' data.  It's good for auditing or versioning.  You can see how a model looked at any stage in its lifecycle, revert it to any version, and even undelete it after it's been destroyed.
 
-Note: this is a fork with tons of dirty, ad-hoc hacks added to customise the gem to my fairly narrow and esoteric use case, Use at your own risk (or just use the main paper_trail gem like a normal person)
+# Note: this is a fork with tons of dirty, ad-hoc hacks added to customise the gem to my fairly narrow and esoteric use case, Use at your own risk (or just use the main paper_trail gem like a normal person)
 
 
 
